@@ -7,3 +7,8 @@ spring:
   profiles: dev
   application:
     name: userServer
+---
+spring:
+  profiles: test
+  application:
+    name: userServerTest

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<body>
+<div class="layui-container" style="margin-top: 50px;">
+
+    <div class="layui-container" style="width: 500px;height: 330px;padding-top: 60px;">
+        <form class="layui-form" action="/menu/save" method="post" th:id="addMenuForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜品名称：</label>
+                <div class="layui-inline">
+                    <input type="text" name="name" lay-verify="required" autocomplete="off"  class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">单价：</label>
+                <div class="layui-inline">
+                    <input type="text" name="price" lay-verify="required"  autocomplete=" off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜品详情：</label>
+                <div class="layui-input-block detail-box">
+                    <textarea class="layui-textarea " name="detail" lay-verify="content" id="LAY_demo_editor"></textarea>
+                </div>
+            </div>
+            <input type="hidden" name="image"  id="productImg">
+
+
+
+            <div class="layui-upload-drag" id="test10" style="margin-left: 150px;
+    margin-bottom: 50px;">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <div class="layui-hide" id="uploadDemoView">
+                    <hr>
+                    <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                </div>
+            </div>
+
+            <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label"></label>-->
+                <!--<div class="layui-input-inline uploadHeadImage">-->
+                    <!--<div class="layui-upload-drag" id="headImg">-->
+                        <!--<i class="layui-icon"></i>-->
+                        <!--<p>点击上传图片，或将图片拖拽到此处</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="layui-input-inline">
+                <div class="layui-upload-list">
+                    <p id="demoText"></p>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-submit type="button" onclick="submitForm()" lay-filter="demo2" style="margin-left: 160px;">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script>
+
+
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            ,url: '/menu/upload' //改成您自己的上传接口
+            ,done: function(res){
+                //console.log(res.data.src);
+                layer.msg('图片上传成功');
+                $("#productImg").val(res.data.src);
+            }
+        });
+
+
+    });
+
+
+
+    function submitForm(){
+
+        layer.msg('添加菜品成功', {
+            icon: 1,
+            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+        }, function(){
+            $("#addMenuForm").submit();
+        });
+
+    }
+</script>
+</body>
+</html>

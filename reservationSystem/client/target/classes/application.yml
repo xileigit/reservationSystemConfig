@@ -1,0 +1,14 @@
+server:
+  port: 8009
+
+spring:
+
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7001/eureka/
+    register-with-eureka: false

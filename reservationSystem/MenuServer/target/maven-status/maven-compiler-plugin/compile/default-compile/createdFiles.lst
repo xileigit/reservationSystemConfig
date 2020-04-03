@@ -1,0 +1,5 @@
+com\leilei\menuserver\dao\MenuMapper.class
+com\leilei\menuserver\service\impl\MenuServiceImpl.class
+com\leilei\menuserver\service\MenuService.class
+com\leilei\menuserver\controller\MenuController.class
+com\leilei\menuserver\MenuServer8002.class

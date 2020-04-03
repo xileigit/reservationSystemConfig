@@ -1,0 +1,5 @@
+com\leilei\userserver\service\impl\UserServiceImpl.class
+com\leilei\userserver\controller\UserController.class
+com\leilei\userserver\dao\UserMapper.class
+com\leilei\userserver\service\UserService.class
+com\leilei\userserver\UserServer8001.class

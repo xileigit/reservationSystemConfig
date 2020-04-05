@@ -54,4 +54,31 @@
   <select id="count" resultType="Integer">
     select count(id) from menu
   </select>
+
+  <select id="selectPageList" parameterType="com.leilei.common.Page" resultType="Menu" >
+    select
+    *
+    from menu
+
+    order by id DESC
+    limit #{start},#{rows}
+  </select>
+
+
+
+  <!-- 通过条件分页查询，返回总记录数 -->
+  <select id="selectPageCount" parameterType="com.leilei.common.Page"  resultType="java.lang.Integer">
+    select count(1) from menu
+
+  </select>
+  <select id="findMenulist" parameterType="Integer" resultType="Menu" >
+    select
+    *
+    from menu
+
+    order by id DESC
+    limit 1,#{rows}
+  </select>
+
+
 </mapper>

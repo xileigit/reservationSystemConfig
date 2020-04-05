@@ -1,5 +1,7 @@
 package com.leilei.client.controller;
 import com.leilei.client.feign.MenuFeignClient;
+import com.leilei.common.Page;
+import com.leilei.common.ResultMap;
 import com.leilei.entity.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,32 +15,52 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
+    @GetMapping(value = "/layUiList")
+    @ResponseBody
+    public  ResultMap<List<Menu>> backContent(Page page, @RequestParam("limit") int limit){
+        System.out.println("menuList feign" );
+        System.out.println(page);
+        return menuFeignClient.backContent(page,limit);
+    }
     @RequestMapping("/hello")
     public String getHello(){
         return "/adminIndex";
+    }
+    @RequestMapping("/manage")
+    public String getManage(){
+       return "/menu_manage";
+        //return "/menu_edit";
+    }
+    @GetMapping(value = "/menuList")
+    @ResponseBody
+    public  List<Menu> getMenuList(String page,String limit){
+        System.out.println("test getmenulist");
+        return menuFeignClient.getMenuList(page,limit);
+    }
+    @GetMapping(value = "/menuListUi")
+    @ResponseBody
+    public  ResultMap<List<Menu>> getMenuListUi(String page,String limit){
+        System.out.println("test getmenulist");
+        return menuFeignClient.getMenuListUi(page,limit);
     }
     @Autowired
     MenuFeignClient menuFeignClient;
     @GetMapping("/count")
     @ResponseBody
     public Integer getMenuCount(){
+        System.out.println("menuFeign  count" );
        return menuFeignClient.getMenuCount();
     }
-//    @GetMapping("/add")
-//    public String addMenu(){
-//        return "/menu_add";
-//    }
     @PostMapping("/save")
     public String save(Menu menu){
-        System.out.println(menu);
         menuFeignClient.save(menu);
         return "redirect:/menu/redirect/menu_add";
     }
-
     @RequestMapping("/redirect/{target}")
     public String redirect(@PathVariable("target") String target){
         return target;

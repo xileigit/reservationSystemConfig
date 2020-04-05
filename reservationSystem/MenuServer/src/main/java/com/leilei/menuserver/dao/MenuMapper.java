@@ -1,4 +1,5 @@
 package com.leilei.menuserver.dao;
+import com.leilei.common.Page;
 import com.leilei.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,10 @@ public interface MenuMapper {
     int updateByPrimaryKey(Menu record);
 
     int count();
+
+    List<Menu> selectPageList(Page page);
+
+    Integer selectPageCount(Page page);
+
+    List<Menu> findMenulist(Integer rows);
 }

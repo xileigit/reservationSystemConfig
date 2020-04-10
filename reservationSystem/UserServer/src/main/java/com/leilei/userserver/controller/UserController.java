@@ -6,7 +6,9 @@ import com.leilei.userserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 
 @RestController
 @RequestMapping("/user")
@@ -38,6 +40,34 @@ public class UserController {
     @ResponseBody
     public ResponseResult<String> register( User user){
         return userService.register(user);
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/setSession/{key}/{value}")
+    public String setSession(@PathVariable String key , @PathVariable String value,
+                             HttpServletRequest request){
+        request.getSession().setAttribute(key,value);
+        Enumeration<String> headers = request.getHeaderNames();
+        while (headers.hasMoreElements()){
+            String name = headers.nextElement();
+            System.out.println(name + ":"+ request.getHeader(name));
+        }
+        System.out.println(request.getSession().getId());
+        System.out.println(request.getSession().getAttribute(key));
+        return request.getSession().getId();
+    }
+
+    /**
+     * 读取session
+     * @param key
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getSession/{key}")
+    public String getSession(@PathVariable String key ,HttpServletRequest request){
+        return request.getSession().getAttribute(key) + "---- sessionId:" + request.getSession().getId() ;
     }
 
 }

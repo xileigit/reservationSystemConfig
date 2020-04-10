@@ -10,11 +10,11 @@
         where id = #{id};
     </select>
     <insert id="addUser" parameterType="User" >
-      insert into user (id, username, password,
+      insert into user (id, username, gender,password,
       email, phone, question,
       answer, role, create_time,
       update_time)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},#{gender,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
       #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
       now())

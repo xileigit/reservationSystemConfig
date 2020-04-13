@@ -59,7 +59,7 @@
         </sqlMapGenerator>
 
         <!-- 生成接口dao -->
-        <javaClientGenerator targetPackage="com.leilei.menuserver.dao" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.leilei.orderserver.dao" targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 

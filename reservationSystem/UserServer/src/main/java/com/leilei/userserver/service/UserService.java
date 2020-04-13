@@ -7,4 +7,8 @@ public interface UserService {
     ResponseResult<User> login(String username, String password);
     ResponseResult<String> register(User user);
     User findUserById(Integer id);
+
+    int getMaleCnt();
+
+    int getFemaleCnt();
 }

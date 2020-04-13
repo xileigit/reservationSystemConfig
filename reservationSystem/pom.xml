@@ -14,6 +14,7 @@
         <module>configServer</module>
         <module>MenuServer</module>
         <module>client</module>
+        <module>OrderServer</module>
     </modules>
 
     <packaging>pom</packaging>

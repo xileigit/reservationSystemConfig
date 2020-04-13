@@ -43,7 +43,6 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item"><a href="/category/admincat" target="iframe-content">分类管理</a></li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">菜品管理</a>
                     <dl class="layui-nav-child">
@@ -53,9 +52,17 @@
                     </dl>
                 </li>
 
-                <li class="layui-nav-item"><a href="/product/monthSalesUI" target="iframe-content">订单管理</a></li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">订单管理</a>
+
+                    <dl class="layui-nav-child">
+                        <dd><a href="/order/redirect/order_sales" target="iframe-content">销量统计</a></dd>
+                        <dd><a href="/order/redirect/order_edit"  target="iframe-content">编辑删除</a></dd>
+
+                    </dl>
+                </li>
                 <li class="layui-nav-item"><a href="/comment/editUI" target="iframe-content">评论管理</a></li>
-                <li class="layui-nav-item"><a href="/user/genderUI" target="iframe-content">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/user/redirect/user_gender" target="iframe-content">用户管理</a></li>
             </ul>
         </div>
     </div>

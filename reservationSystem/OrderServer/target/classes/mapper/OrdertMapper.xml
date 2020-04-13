@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leilei.orderserver.dao.OrdertMapper">
+  <resultMap id="BaseResultMap" type="com.leilei.entity.Ordert">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ordert
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="count" resultType="Integer">
+    select count(id) from ordert
+  </select>
+
+  <insert id="insert" parameterType="com.leilei.entity.Ordert">
+    insert into ordert (id, `uid`, mid, 
+      create_time, update_time, `state`
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.leilei.entity.Ordert">
+    update ordert
+    set `uid` = #{uid,jdbcType=INTEGER},
+      mid = #{mid,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      update_time = #{update_time,jdbcType=TIMESTAMP},
+      `state` = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, `uid`, mid, create_time, update_time, `state`
+    from ordert
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `uid`, mid, create_time, update_time, `state`
+    from ordert
+  </select>
+  <select id="selectPageList" parameterType="com.leilei.common.Page" resultType="Ordert" >
+    select
+    *
+    from ordert
+
+    order by id DESC
+    limit #{start},#{rows}
+  </select>
+  <select id="selectPageCount" parameterType="com.leilei.common.Page"  resultType="java.lang.Integer">
+    select count(1) from ordert
+
+  </select>
+  <select id="findOrderlist" parameterType="Integer" resultType="Ordert" >
+    select
+    *
+    from ordert
+
+    order by id DESC
+    limit 1,#{rows}
+  </select>
+  <select id="getMonthSales" resultType="com.leilei.entity.MonthSales">
+  select   DATE_FORMAT(create_time,'%m') as month,sum(id) as sales
+ from ordert   group by DATE_FORMAT(create_time,'%m')  order by DATE_FORMAT(create_time,'%m') ;
+
+</select>
+
+
+
+</mapper>

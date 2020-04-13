@@ -3,18 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/../reservationSystem" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../reservationSystem/MenuServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../reservationSystem/OrderServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../reservationSystem/UserServer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../reservationSystem/client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../reservationSystem/configServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../reservationSystem/eurekaServer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/orderServer" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../reservationSystem/orderServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../reservationSystem/reservationAPI" charset="UTF-8" />
   </component>
 </project>

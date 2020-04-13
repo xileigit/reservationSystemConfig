@@ -58,5 +58,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.findUserById(id);
     }
 
+    @Override
+    public int getMaleCnt() {
+        return userMapper.getMaleCnt();
+    }
+
+    @Override
+    public int getFemaleCnt() {
+        return userMapper.getFemaleCnt();
+    }
+
 
 }

@@ -3,6 +3,7 @@ package com.leilei.client.feign;
 import com.leilei.common.ResponseResult;
 import com.leilei.entity.Menu;
 import com.leilei.entity.User;
+import com.leilei.entity.UserGender;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,9 @@ public interface UserFeignClient {
     @ResponseBody
     //https://blog.csdn.net/niemingming/article/details/80862949
     ResponseResult<User> login(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session);
-
+    @GetMapping("/user/gender")
+    @ResponseBody
+    UserGender gender();
 
 
     @RequestMapping("/user/setSession/{key}/{value}")

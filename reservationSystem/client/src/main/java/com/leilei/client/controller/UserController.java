@@ -3,12 +3,10 @@ package com.leilei.client.controller;
 import com.leilei.client.feign.UserFeignClient;
 import com.leilei.common.ResponseResult;
 import com.leilei.entity.User;
+import com.leilei.entity.UserGender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +18,15 @@ public class UserController {
     @RequestMapping("/add")
     public String add(){
         return "user_add";
+    }
+    @RequestMapping("/genderU")
+    public String gender(){
+        return "user_gender";
+    }
+    @GetMapping("/gender")
+    @ResponseBody
+    UserGender genderdo(){
+        return userFeignClient.gender();
     }
     @RequestMapping("/login")
     public String login(){

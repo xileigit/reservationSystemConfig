@@ -38,6 +38,8 @@
         where username = #{username}
         and password = #{password}
     </select>
+    <select id="getMaleCnt" resultType="int">select count(1) from user where gender= 'male' </select>
+    <select id="getFemaleCnt" resultType="int"> select count(1) from user where gender='female' </select>
 
 </mapper>
 

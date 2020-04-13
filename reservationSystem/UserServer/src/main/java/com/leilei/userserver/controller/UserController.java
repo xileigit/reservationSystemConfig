@@ -2,6 +2,7 @@ package com.leilei.userserver.controller;
 import com.leilei.common.ResponseCode;
 import com.leilei.common.ResponseResult;
 import com.leilei.entity.User;
+import com.leilei.entity.UserGender;
 import com.leilei.userserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,16 @@ public class UserController {
         return userService.findUserById(id);
     }
 
+    @GetMapping("/gender")
+    public UserGender gender(){
+        int male,female;
+        male=userService.getMaleCnt();
+        female=userService.getFemaleCnt();
+        UserGender userGender = new UserGender();
+        userGender.setMale(male);
+        userGender.setFemale(female);
+        return userGender;
+    }
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody
     public ResponseResult<User> login(String username, String password, HttpSession session){

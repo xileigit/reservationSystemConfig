@@ -53,6 +53,7 @@
 
 .shopping-cart .items .product .info .product-name{
 	font-weight: 600;
+	text-align: center;
 }
 
 .shopping-cart .items .product .info .product-name .product-info{

@@ -34,10 +34,15 @@ public class UserController {
     }
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseResult<User> login(String username, String password, HttpSession session){
+    public ResponseResult<User> login(String username, String password, HttpServletRequest request){
+        System.out.println(username);
+        System.out.println(password);
         ResponseResult<User> response = userService.login(username,password);
+        System.out.println(response);
         if(response.isSuccess()){
-            session.setAttribute("CURRENT_USER",response.getData());
+            request.getSession().setAttribute("t1","h1");
+            request.getSession().setAttribute("CURRENT_USER",response.getData());
+            System.out.println(request.getSession().getAttribute("CURRENT_USER"));
         }
         return response;
     }
@@ -47,13 +52,11 @@ public class UserController {
         session.removeAttribute("CURRENT_USER");
         return ResponseResult.createBySuccess("注销成功",null);
     }
-    @PostMapping(value = "register.do")
+    @PostMapping(value ="/register.do")
     @ResponseBody
     public ResponseResult<String> register( User user){
         return userService.register(user);
     }
-
-
     @ResponseBody
     @RequestMapping("/setSession/{key}/{value}")
     public String setSession(@PathVariable String key , @PathVariable String value,

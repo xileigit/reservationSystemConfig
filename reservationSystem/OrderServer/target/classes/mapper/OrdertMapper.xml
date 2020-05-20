@@ -34,6 +34,13 @@
       `state` = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="decbaofangCount">
+     update seat set store = store -1 where type = 1
+  </update>
+  <update id="decdatingCount">
+     update seat set store = store -1 where type = 0
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, `uid`, mid, create_time, update_time, `state`
     from ordert
@@ -64,9 +71,8 @@
     limit 1,#{rows}
   </select>
   <select id="getMonthSales" resultType="com.leilei.entity.MonthSales">
-  select   DATE_FORMAT(create_time,'%m') as month,sum(id) as sales
+  select   DATE_FORMAT(create_time,'%m') as month,count(id) as sales
  from ordert   group by DATE_FORMAT(create_time,'%m')  order by DATE_FORMAT(create_time,'%m') ;
-
 </select>
 
 

@@ -19,7 +19,7 @@ public interface MenuFeignClient {
     @GetMapping("/menu/count")
     Integer getMenuCount();
     @PostMapping("/menu/save")
-    void save(@RequestBody Menu menu);
+    void save( Menu menu);
     @GetMapping(value = "/menu/layUiList")
     ResultMap<List<Menu>> backContent(Page page, @RequestParam("limit") int limit);
     @GetMapping(value = "/menu/menuList")
@@ -27,6 +27,18 @@ public interface MenuFeignClient {
 
     @GetMapping(value = "/menu/menuListUi")
     ResultMap<List<Menu>> getMenuListUi(@RequestParam("page") String page,@RequestParam("limit") String limit);
+    @GetMapping(value = "/menu/getIndexMenu")
+    List<Menu> getIndexMenu();
+    @GetMapping(value = "/menu/datingCount")
+    Integer getdatingCount();
+    @GetMapping(value = "/menu/baofangCount")
+    Integer getbaofangCount();
+    @PostMapping(value = "/menu/delete")
+    void deleteById(Integer id);
+    @GetMapping(value = "/menu/AllMenuList")
+    List<Menu> getAllMenuList();
+    @PostMapping("/menu/edit")
+    void edit(Menu menu);
     // @GetMapping(value = "/menu/layUiList" , consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
    // ResultMap<List<Menu>> backContent(@RequestParam("page") Page page, @RequestParam("limit") int limit);
 }

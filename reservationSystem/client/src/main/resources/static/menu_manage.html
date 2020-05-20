@@ -72,15 +72,47 @@
         //监听工具条
         table.on('tool(demo)', function(obj){
             var data = obj.data;
+            var menuId=data.id;
             if(obj.event === 'detail'){
                 layer.msg('ID：'+ data.id + ' 的查看操作');
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
+                    //alert(menuId);
                     obj.del();
                     layer.close(index);
+                    $.ajax({
+                        type: 'post',
+                        url: 'http://localhost:8002/menu/delete',
+                        data: {
+                            id:menuId
+                        },
+                        success: function(data){
+
+                        }
+                    });
                 });
             } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                $.ajax({
+                    type: 'post',
+                    url: "/menu/edit",
+                    data: {
+                        id:data.id,
+                        name:data.name,
+                        image:data.image,
+                        detail:data.detail,
+                        price:data.price,
+                        freq:data.freq,
+                        average:data.average,
+                    },
+                    success: function(data){
+                        layer.msg('修改菜品成功', {
+                            icon: 1,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+
+                        });
+                    }
+                });
             }
         });
 

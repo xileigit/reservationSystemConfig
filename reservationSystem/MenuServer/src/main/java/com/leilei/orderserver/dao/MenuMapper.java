@@ -19,4 +19,10 @@ public interface MenuMapper {
     Integer selectPageCount(Page page);
 
     List<Menu> findMenulist(Integer rows);
+
+    List<Menu> getIndexMenu();
+
+    Integer getdatingCount();
+
+    Integer getbaofangCount();
 }

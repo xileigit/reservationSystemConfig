@@ -1,5 +1,5 @@
 <!Doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -17,7 +17,17 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
-
+        <script src="js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+        <link rel="stylesheet" th:href="@{/vendors/linericon/style.css}">
+        <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+        <link rel="stylesheet" th:href="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css}">
+        <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}">
+        <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
+        <!-- main css -->
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
 		<style type="text/css">
 			
 			.wrap-box{width:1100px;min-width:1100px; margin:6% auto;
@@ -46,6 +56,16 @@
 			.date-tiem-span{ background:#333;}
 			.date-s-span{ background:#f00;}
 			.date-select-a{margin-right:5px;}
+            .seatorder-info {
+                margin-bottom: -100px;
+                padding-top: 15px;
+            }
+            .seatorder-detail{
+                font-size: 20px;
+                line-height: 20px;
+                padding: 15px;
+            }
+
 		</style>
     </head>
     <body>
@@ -54,7 +74,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" alt="香港粗菜馆（虹桥店）"></a>
+                    <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" th:src="@{/image/Logo.png}" alt="香港粗菜馆（虹桥店）"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -100,6 +120,23 @@
         <!--================ About History Area  =================-->
         <section class="about_history_area section_gap">
             <div class="container">
+                <div class="seatorder-info">
+                    <h3 th:text="${session.CURRENT_USER.getUsername()}+' 您的订单信息如下'"></h3>
+                    <p></p>
+                    <p class="seatorder-detail"><span th:text="${session.SEAT_ORDER.getCreate_time().toLocaleString()}"></span>
+                        <span th:text="${session.SEAT_ORDER.getPersonNum()}+'人'"></span>
+                        <span th:switch="${session.SEAT_ORDER.getType()}">
+                            <span th:case="0">大厅用餐</span>
+                              <span th:case="1">包房用餐</span>
+                              <span th:case="3">包房优先用餐</span>
+                              <span th:case="4">大厅优先用餐</span>
+                        </span>
+                    </p>
+                    <p class="seatorder-detail">
+                        <span th:text="${session.SEAT_ORDER.getName()} "></span>
+                        <span th:text="'  '+ ${session.SEAT_ORDER.getPhone()}"></span>
+                    </p>
+                </div>
                 <div class="row">
 
                    <div class="wrap-box">
@@ -119,10 +156,17 @@
 	    			
 
 	    		</tr>
-                <script src="js/jquery-3.2.1.min.js"></script>
-                <script src="js/leftTime.min.js"></script>
-	    		<script type="text/javascript">
-	    			var endTime = "2020-04-13 22:45:24";
+                <script src="js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+                <script src="js/leftTime.min.js" th:src="@{/js/leftTime.min.js}"></script>
+                <p id="end-time0" style="display: none" th:text="${session.SEAT_ORDER.getCreate_time().toLocaleString()}"></p>
+
+	    		<script type="text/javascript" >
+
+
+	    			// var endTime = "2020-05-18 22:00:00";
+                    var endTime = $('#end-time0').text();
+
+
 	    			$(function(){
 	    				//日期倒计时
 						$.leftTime(endTime,function(d){

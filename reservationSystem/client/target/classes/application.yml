@@ -7,7 +7,6 @@ spring:
       port: 6379
       database: 0
       password: leilei
-
   thymeleaf:
     prefix: classpath:/static/
     suffix: .html
@@ -17,3 +16,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:7001/eureka/
     register-with-eureka: false
+
+feign:
+ httpclient:
+  enabled: true

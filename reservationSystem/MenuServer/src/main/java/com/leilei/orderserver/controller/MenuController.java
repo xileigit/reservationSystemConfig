@@ -48,15 +48,46 @@ public class MenuController {
 //        }
         return new ResultMap<List<Menu>>("",productList,0,totals);
     }
-
+    @GetMapping(value = "/getIndexMenu")
+    public List<Menu> getIndexMenu(){
+        return menuService.getIndexMenu();
+    }
+    @GetMapping(value = "AllMenuList")
+    public List<Menu> getAllMenuList(){
+        return menuService.getAllMenuList();
+    }
     @GetMapping("/count")
     public Integer getMenuCount(){
         System.out.println("menuServer  count" );
         return menuService.count();
     }
+    @GetMapping("/datingCount")
+    public Integer getdatingCount(){
+        System.out.println("menuServer  count" );
+        return menuService.getdatingCount();
+    }
+    @PostMapping("/delete")
+    public void deleteById(Integer id) {
+//        System.out.println("guhfghqh");
+        System.out.println(id + "in8002");
+        menuService.deleteById(id);
+    }
+    @GetMapping("/baofangCount")
+    public Integer getbaofangCount(){
+        System.out.println("menuServer  count" );
+        return menuService.getbaofangCount();
+    }
+
     @PostMapping("/save")
-    public void save(@RequestBody Menu menu){
+    public void save( Menu menu){
+        System.out.println("save menu");
+        System.out.println(menu);
         menuService.save(menu);
+    }
+    @PostMapping("/edit")
+    public void edit( Menu menu){
+
+        menuService.update(menu);
     }
 
 }

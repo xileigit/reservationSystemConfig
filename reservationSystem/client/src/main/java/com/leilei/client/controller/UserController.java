@@ -17,7 +17,7 @@ public class UserController {
     UserFeignClient userFeignClient;
     @RequestMapping("/add")
     public String add(){
-        return "user_add";
+        return "register";
     }
     @RequestMapping("/genderU")
     public String gender(){
@@ -28,19 +28,25 @@ public class UserController {
     UserGender genderdo(){
         return userFeignClient.gender();
     }
+    @RequestMapping("/login1")
+    public String login1(){
+        return "/login1";
+    }
     @RequestMapping("/login")
     public String login(){
         return "/login";
     }
     @PostMapping(value = "/register.do")
     public String register(User user){
+        System.out.println(user+"incontroller");
         userFeignClient.register(user);
-        return "redirect:/user/redirect/user_add";
+        return "/index";
     }
     @PostMapping(value = "login.do")
-    @ResponseBody
-    ResponseResult<User> login(String username, String password, HttpSession session){
-        return userFeignClient.login(username,password,session);
+    String login(String username, String password, HttpSession session){
+        System.out.println(username+"login");
+        userFeignClient.login(username,password,session);
+        return "/order_add";
     }
     @RequestMapping("/redirect/{target}") 
     public String redirect(@PathVariable("target") String target){

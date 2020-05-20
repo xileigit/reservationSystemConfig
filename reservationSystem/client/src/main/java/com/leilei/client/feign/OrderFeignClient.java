@@ -13,10 +13,14 @@ import java.util.List;
 @Component
 @FeignClient(name = "ORDERSERVER")
 public interface OrderFeignClient {
+    @GetMapping("/order/baofangDec")
+   Integer decbaofangCount();
+    @GetMapping("/order/datingDec")
+    Integer decdatingCount();
     @GetMapping("/order/count")
     Integer getMenuCount();
     @PostMapping("/order/save")
-    void save(@RequestBody Ordert order);
+    void save( Ordert order);
     @GetMapping(value = "/order/layUiList")
     ResultMap<List<Ordert>> backContent(Page page, @RequestParam("limit") int limit);
     @GetMapping(value = "/order/orderList")

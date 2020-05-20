@@ -5,6 +5,7 @@ import com.leilei.common.ResultMap;
 import com.leilei.entity.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
@@ -50,17 +51,46 @@ public class MenuController {
     }
     @Autowired
     MenuFeignClient menuFeignClient;
+    @GetMapping("/getIndexMenuList")
+    public String getIndexMenuList(Model model){
+       System.out.println("menuFeign  count" );
+        List<Menu> list = menuFeignClient.getIndexMenu();
+       model.addAttribute("IndexMenuList",list);
+       return "index";
+    }
+    @GetMapping("/specialMenuList")
+    public String getSpecialMenuList(Model model){
+
+        List<Menu> list = menuFeignClient.getAllMenuList();
+        System.out.println(list);
+        model.addAttribute("IndexMenuList",list);
+        return "accomodation";
+    }
+    @GetMapping("/datingCount")
+    @ResponseBody
+    public Integer getdatingCount(){
+        return menuFeignClient.getdatingCount();
+    }
+    @GetMapping("/baofangCount")
+    @ResponseBody
+    public Integer getbaofangCount(){
+        return menuFeignClient.getbaofangCount();
+    }
+
     @GetMapping("/count")
     @ResponseBody
     public Integer getMenuCount(){
         System.out.println("menuFeign  count" );
-       return menuFeignClient.getMenuCount();
+        return menuFeignClient.getMenuCount();
     }
     @PostMapping("/save")
     public String save(Menu menu){
+        System.out.println("menu_save before");
         menuFeignClient.save(menu);
+        System.out.println("menu_save");
         return "redirect:/menu/redirect/menu_add";
     }
+
     @RequestMapping("/redirect/{target}")
     public String redirect(@PathVariable("target") String target){
         return target;
@@ -75,7 +105,6 @@ public class MenuController {
         //保存上传
         OutputStream out = null;
         InputStream fileInput = null;
-
         try {
             if (file != null) {
                 String originalName = file.getOriginalFilename();
@@ -113,5 +142,22 @@ public class MenuController {
         String realativePath=dateStr + "." + suffix;
         map2.put("src",realativePath );
         return map;
+    }
+    @PostMapping("/delete")
+    @ResponseBody
+    public Integer deleteById(Integer id){
+        System.out.println(id);
+        menuFeignClient.deleteById(id);
+        System.out.println(id);
+        return 0;
+    }
+
+    @PostMapping("/edit")
+    @ResponseBody
+    public Integer edit(Menu menu){
+
+        menuFeignClient.edit(menu);
+
+        return 0;
     }
 }

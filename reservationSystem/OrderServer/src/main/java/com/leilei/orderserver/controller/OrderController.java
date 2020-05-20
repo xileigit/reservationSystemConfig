@@ -57,8 +57,10 @@ public class OrderController {
         return orderService.count();
     }
     @PostMapping("/save")
-    public void save(@RequestBody Ordert menu){
-        orderService.save(menu);
+    public void save( Ordert ordert){
+        System.out.println("order save");
+        System.out.println(ordert);
+        orderService.save(ordert);
     }
 
     @RequestMapping("/monthSales")
@@ -69,6 +71,17 @@ public class OrderController {
             System.out.println(monthSales);
         }
         return monthSalesList;
+    }
+
+    @GetMapping("/baofangDec")
+    public Integer decbaofangCount(){
+        System.out.println("定保方  count" );
+        return orderService.decbaofangCount();
+    }
+    @GetMapping("/datingDec")
+    public Integer decdatingCount(){
+        System.out.println("定保方  count" );
+        return orderService.decdatingCount();
     }
 
 }

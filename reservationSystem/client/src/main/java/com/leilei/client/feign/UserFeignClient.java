@@ -16,10 +16,10 @@ import javax.servlet.http.HttpSession;
 public interface UserFeignClient {
     @PostMapping("/user/save")
     void save(@RequestBody User user);
-    @PostMapping(value = "/user/register.do")
+    @PostMapping(value ="/user/register.do")
     @ResponseBody
     ResponseResult<String> register(User user);
-    @PostMapping(value = "login.do")
+    @PostMapping(value = "/user/login.do")
     @ResponseBody
     //https://blog.csdn.net/niemingming/article/details/80862949
     ResponseResult<User> login(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session);

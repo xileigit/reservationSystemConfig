@@ -27,4 +27,8 @@ public interface OrdertMapper {
     List<Ordert> findOrderlist(Integer rows);
 
     List<MonthSales> getMonthSales();
+
+    void decbaofangCount();
+
+    void decdatingCount();
 }

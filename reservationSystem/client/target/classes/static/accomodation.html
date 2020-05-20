@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -7,15 +7,15 @@
         <link rel="icon" href="image/favicon.png" type="image/png">
         <title>Royal Hotel</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="vendors/linericon/style.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-        <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+        <link rel="stylesheet" th:href="@{/vendors/linericon/style.css}">
+        <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+        <link rel="stylesheet" th:href="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css}">
+        <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}">
+        <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
         <!-- main css -->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
         <style type="text/css">
             .accomodation_item .hotel_img img{
                 width: 270px;
@@ -29,7 +29,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" alt="香港粗菜馆（虹桥店）"></a>
+                    <a class="navbar-brand logo_h" href="index.html"><img th:src="@{/image/Logo.png}" alt="香港粗菜馆（虹桥店）"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -38,10 +38,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">首页</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="about.html">餐厅介绍</a></li>
-                            <li class="nav-item"><a class="nav-link" href="accomodation.html">特色菜品</a></li>
-                            <li class="nav-item"><a class="nav-link" href="gallery.html">餐厅环境</a></li>
+                            <li class="nav-item active"><a class="nav-link" th:href="@{/index.html}">首页</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{about.html}">餐厅介绍</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{accomodation.html}">特色菜品</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/gallery.html}">餐厅环境</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">预定</a>
                                 <ul class="dropdown-menu">
@@ -80,44 +80,14 @@
                     
                 </div>
                 <div class="row mb_30">
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-3 col-sm-6" th:each="menu:${IndexMenuList}">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="image/room1.jpg" alt="">
+                                <img th:src="'/images/'+ ${menu.image}" alt="">
                                 <a href="#" class="btn theme_btn button_hover">Book Now</a>
                             </div>
-                            <a href="#"><h4 class="sec_h4">花雕芙蓉蒸帝王蟹</h4></a>
-                            <h5>￥250</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room2.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">沙田烤乳鸽</h4></a>
-                            <h5>￥200</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room3.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">冰镇猪手</h4></a>
-                            <h5>￥300</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room4.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">鸿运烤乳猪</h4></a>
-                            <h5>￥400</h5>
+                            <a href="#"> <h4 class="sec_h4" th:text="${menu.name}" >花雕芙蓉蒸帝王蟹</h4></a>
+                            <h5 th:text=" '￥'+${menu.price}">￥250</h5>
                         </div>
                     </div>
                 </div>
@@ -149,16 +119,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/popper.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="js/jquery.ajaxchimp.min.js"></script>
-        <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-        <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
-        <script src="js/mail-script.js"></script>
-        <script src="js/stellar.js"></script>
-        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
-        <script src="js/custom.js"></script>
+        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{/js/popper.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+        <script th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
+        <script th:src="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js}"></script>
+        <script th:src="@{/vendors/nice-select/js/jquery.nice-select.js}"></script>
+        <script th:src="@{/js/mail-script.js}"></script>
+        <script th:src="@{/js/stellar.js}"></script>
+        <script th:src="@{/vendors/lightbox/simpleLightbox.min.js}"></script>
+        <script th:src="@{/js/custom.js}"></script>
     </body>
 </html>

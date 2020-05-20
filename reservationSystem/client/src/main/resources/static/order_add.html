@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="image/favicon.png" type="image/png">
+    <title>Royal Hotel</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <script src="js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/vendors/linericon/style.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
+    <!-- main css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <style type="text/css">
+        .accomodation_item .hotel_img img{
+            width: 260px;
+            height: 270px;
+        }
+        .banner_area .position {
+
+            margin: 30px auto;
+        }
+        .seat-info {
+            font-size: 25px;
+            color: beige;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--================Header Area =================-->
+<header class="header_area">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" th:src="@{/image/Logo.png}" alt="香港粗菜馆（虹桥店）"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                <ul class="nav navbar-nav menu_nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="index.html">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">餐厅介绍</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accomodation.html">特色菜品</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">餐厅环境</a></li>
+                    <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">预定</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="blog.html">预定</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog-single.html">购物车</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================Header Area =================-->
+
+<!--================Banner Area =================-->
+<section class="banner_area">
+    <div class="booking_table d_flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="banner_content text-center">
+
+                <h2>Relax Your Mind</h2>
+                <p><strong>地址：</strong>上海闵行区虹井路120弄6号爱情海购物广场6楼F632近吴中路<br><strong>标签：</strong> 虹桥镇 龙柏新村 粤菜
+                    <br><strong>营业时间:</strong>
+                    午餐10:00-14:00，晚餐16:00-21:30</p>
+
+
+            </div>
+            <div class="seat-info">
+                <script type="text/javascript">
+
+                    $.ajax({
+                        url:"/menu/baofangCount",
+                        type: "GET",
+                        async: false,
+                        success: function(data){
+                            document.write('<p>包房剩余'+data+'间</p>');
+                        }
+                    });
+                    $.ajax({
+                        url:"/menu/datingCount",
+                        type: "GET",
+                        async: false,
+                        success: function(data){
+                            document.write('<p>大厅剩余'+data+'桌</p>');
+                        }
+                    });
+                </script>
+                <!--<p>包房剩余10间</p>-->
+                <!--<p>剩余10桌</p>-->
+
+            </div>
+        </div>
+    </div>
+    <div class="hotel_booking_area position">
+        <div class="container">
+            <form action="/order/save" method="post" id="addOrderForm">
+                <div class="hotel_booking_table">
+                    <div class="col-md-12">
+                        <div class="boking_table">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="book_tabel_item">
+                                        <div class="form-group">
+                                            <div class='input-group date' id='datetimepicker11'>
+                                                <input type='text' class="form-control"  name="create_time"  placeholder="就餐时间"/>
+                                                <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class='input-group date' >
+                                                <input type='text' class="form-control" name="name" placeholder="联系人姓名"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="book_tabel_item">
+                                        <div class="input-group">
+                                            <select class="wide" name="type">
+                                                <option data-display="餐位信息">餐位信息</option>
+                                                <option value="1" >只订包房</option>
+                                                <option value="0" >只订大厅</option>
+                                                <option value="3">包房优先</option>
+                                                <option value="4">大厅优先</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class='input-group date' >
+                                                <input type='text' class="form-control" name="phone" placeholder=" 联系人电话"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="book_tabel_item">
+                                        <div class="form-group">
+                                            <div class='input-group date' >
+                                                <input type='text' class="form-control" name="personNum" placeholder=" 就餐人数"/>
+                                            </div>
+                                        </div>
+                                        <!--<button class="layui-btn book_now_btn button_hover" lay-submit type="button" onclick="submitForm()">立即预定</button>-->
+                                        <a class="book_now_btn button_hover" href="javascript:void(0);" onclick="submitForm();" >立即预定</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        function submitForm(){
+                            // alert('ok');
+
+
+                            $("#addOrderForm").submit();
+
+                        }
+                    </script>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--================Banner Area =================-->
+
+<!--================ Accomodation Area  =================-->
+
+<!--================ Facilities Area  =================-->
+<!--================ About History Area  =================-->
+
+<!--================ Testimonial Area  =================-->
+<!--================ Testimonial Area  =================-->
+
+<!--================ Latest Blog Area  =================-->
+<!--================ Recent Area  =================-->
+
+<!--================ start footer Area  =================-->
+<footer class="footer-area section_gap" style="padding: 30px 0px;">
+    <div class="container">
+
+        <div class="border_line"></div>
+        <div class="row footer-bottom d-flex justify-content-between align-items-center">
+            <p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            <div class="col-lg-4 col-sm-12 footer-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--================ End footer Area  =================-->
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="vendors/nice-select/js/jquery.nice-select.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/stellar.js"></script>
+<script src="vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="js/custom.js"></script>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--<script th:src="@{/js/jquery-3.2.1.min.js}"></script>-->
+<script th:src="@{/js/popper.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
+<script th:src="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/vendors/nice-select/js/jquery.nice-select.js}"></script>
+<script th:src="@{/js/mail-script.js}"></script>
+<script th:src="@{/js/stellar.js}"></script>
+<script th:src="@{/vendors/lightbox/simpleLightbox.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+</body>
+</html>

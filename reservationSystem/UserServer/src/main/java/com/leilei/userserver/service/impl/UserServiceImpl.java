@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
             return ResponseResult.createByErrorMessage("用户名不存在");
         }
         String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
+        System.out.println(md5Password);
         User user  = userMapper.login(username,md5Password);
         if(user == null){
             return ResponseResult.createByErrorMessage("密码错误");
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
     public int getMaleCnt() {
         return userMapper.getMaleCnt();
     }
+
 
     @Override
     public int getFemaleCnt() {

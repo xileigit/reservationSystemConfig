@@ -29,15 +29,12 @@
     $.ajax({
         url: "/order/getMonthSales",
         type: "GET",
-
         async: false,
         success:function(data){
             $.each(data,function(index,monthsale){
                 months[index] = monthsale.month +"月";
                 sales[index] =monthsale.sales;
             });
-
-            //alert(pname);
         },
         error:function () {
             alert('error');

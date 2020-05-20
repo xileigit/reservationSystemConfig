@@ -34,6 +34,26 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public List<Menu> getIndexMenu() {
+        return menuMapper.getIndexMenu() ;
+    }
+
+    @Override
+    public Integer getdatingCount() {
+        return menuMapper.getdatingCount();
+    }
+
+    @Override
+    public Integer getbaofangCount() {
+        return menuMapper.getbaofangCount();
+    }
+
+    @Override
+    public List<Menu> getAllMenuList() {
+        return menuMapper.selectAll();
+    }
+
+    @Override
     public int count() {
         return menuMapper.count();
     }

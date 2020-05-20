@@ -11,7 +11,7 @@ public interface OrderService {
     List<Ordert> findAll();
     int count();
     Ordert findById(Integer id);
-    void save(Ordert menu);
+    void save(Ordert ordert);
     void update(Ordert menu);
     void deleteById(Integer id);
     //分页数据
@@ -22,4 +22,8 @@ public interface OrderService {
     List<Ordert> findOrderlist(Integer rows);
 
     List<MonthSales> getMonthSales();
+
+    Integer decbaofangCount();
+
+    Integer decdatingCount();
 }

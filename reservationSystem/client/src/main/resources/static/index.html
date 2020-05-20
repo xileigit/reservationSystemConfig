@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -7,6 +7,7 @@
         <link rel="icon" href="image/favicon.png" type="image/png">
         <title>Royal Hotel</title>
         <!-- Bootstrap CSS -->
+
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="vendors/linericon/style.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -17,10 +18,31 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="layui/css/layui.css" media="all">
+        <script src="js/jquery-3.2.1.min.js"></script>
         <style type="text/css">
             .accomodation_item .hotel_img img{
                 width: 260px;
                 height: 270px;
+            }
+            .seat-state{
+                width: 100%;
+                height: 35px;
+                line-height: 35px;
+                font-size: 20px;
+            }
+            .input-group{
+                text-align: center;
+            }
+            .book_now_btn {
+                width: 35%;
+                font-size: 16px;
+
+                float: right;
+                margin-right: 165px;
+            }
+            .hotel_booking_table{
+                margin: 15px auto;
             }
         </style>
     </head>
@@ -76,67 +98,82 @@
             </div>
             <div class="hotel_booking_area position">
                 <div class="container">
+                    <form action="/order/save" method="post" id="addOrderForm">
                     <div class="hotel_booking_table">
 
                         <div class="col-md-12">
                             <div class="boking_table">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="book_tabel_item">
-                                            <div class="form-group">
-                                                <div class='input-group date' id='datetimepicker11'>
-                                                    <input type='text' class="form-control" placeholder=" 就餐时间"/>
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class='input-group date' >
-                                                    <input type='text' class="form-control" placeholder=" 联系人姓名"/>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="book_tabel_item">
-                                            <div class="input-group">
-                                                <select class="wide">
-                                                    <option data-display="餐位信息">餐位信息</option>
-                                                    <option value="1">只订包房</option>
-                                                    <option value="2">只订大厅</option>
-                                                    <option value="3">包房优先</option>
-                                                    <option value="4">大厅优先</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class='input-group date' >
-                                                    <input type='text' class="form-control" placeholder=" 联系人电话"/>
-                                                    
-                                                </div>
-                                            </div>
-                                        
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
 
-                                        <div class="book_tabel_item">
-                                            <div class="form-group">
-                                                <div class='input-group date' >
-                                                    <input type='text' class="form-control" placeholder=" 就餐人数"/>
-                                                    
-                                                </div>
+                                            <div class="input-group">
+                                               <p class="seat-state">大厅(有空位）</p>
+
                                             </div>
-                                        
-                                            <a class="book_now_btn button_hover" href="#">立即预定</a>
+                                                <div class='input-group ' >
+                                                  <p class="seat-state"> 包间(有空位）</p>
+                                                </div>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                                <div class='input-group ' >
+                                                    <p class="seat-state">
+                                                        <script>
+                                                            Date.prototype.Format = function (fmt) { // author: meizz
+                                                                var o = {
+                                                                    "M+": this.getMonth() + 1, // 月份
+                                                                    "d+": this.getDate(), // 日
+                                                                    "h+": this.getHours(), // 小时
+                                                                    "m+": this.getMinutes(), // 分
+                                                                    "s+": this.getSeconds(), // 秒
+                                                                    "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                                                                    "S": this.getMilliseconds() // 毫秒
+                                                                };
+                                                                if (/(y+)/.test(fmt))
+                                                                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                                                                for (var k in o)
+                                                                    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                                                                return fmt;
+                                                            }
+
+
+                                                            document.write(new Date().Format("yyyy-MM-dd hh:mm:ss"));</script>
+
+                                                    </p>
+
+
+                                                </div>
+                                        <div class='input-group ' >
+                                            <p class="seat-state">
+                                                <a class="book_now_btn button_hover" href="order_add.html"  >立即预定</a>
+
+                                            </p>
+
+
                                         </div>
+
+                                            <!--<button class="layui-btn book_now_btn button_hover" lay-submit type="button" onclick="submitForm()">立即预定</button>-->
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <script>
+
+                            function submitForm(){
+                                // alert('ok');
+
+                                    $("#addOrderForm").submit();
+
+                            }
+                        </script>
                     </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -147,9 +184,8 @@
             <div class="container">
                 <div class="section_title text-center">
                     <h2 class="title_color">特色菜品</h2>
-
                 </div>
-                <div class="row mb_30">
+                <div class="row mb_30" id="row mb_30">
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
@@ -190,6 +226,7 @@
                             <h5>￥400</h5>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -209,7 +246,7 @@
                     <div class="media testimonial_item">
                         <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
                         <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
+                            <p>味道一般般吧 没有惊艳的感觉</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
                             <div class="star">
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -223,7 +260,7 @@
                     <div class="media testimonial_item">
                         <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
                         <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
+                            <p>又来打卡了，自制奶豆腐每次必点，诚心推荐。</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
                             <div class="star">
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -237,7 +274,7 @@
                     <div class="media testimonial_item">
                         <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
                         <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
+                            <p>在龙柏附近有这样店开出来是喜事，名为粗菜馆实很细很巧，上档次！但不要迎合外地人口味加辣，至少加辣应征求顾客意见灵活运用，保持粤菜港莱清淡又味好。</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
                             <div class="star">
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -251,7 +288,7 @@
                     <div class="media testimonial_item">
                         <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
                         <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
+                            <p>此餐厅还可以价格有点小贵！服务还好</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
                             <div class="star">
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -340,7 +377,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="js/jquery-3.2.1.min.js"></script>
+
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="vendors/owl-carousel/owl.carousel.min.js"></script>

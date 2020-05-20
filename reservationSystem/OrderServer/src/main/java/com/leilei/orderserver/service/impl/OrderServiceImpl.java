@@ -63,4 +63,16 @@ public class OrderServiceImpl implements OrderService {
     public List<MonthSales> getMonthSales() {
         return ordertMapper.getMonthSales();
     }
+
+    @Override
+    public Integer decbaofangCount() {
+        ordertMapper.decbaofangCount();
+        return 0;
+    }
+
+    @Override
+    public Integer decdatingCount() {
+        ordertMapper.decdatingCount();
+        return 0;
+    }
 }

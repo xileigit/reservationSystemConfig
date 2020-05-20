@@ -10,7 +10,7 @@
 <div class="layui-container" style="margin-top: 50px;">
 
     <div class="layui-container" style="width: 500px;height: 330px;padding-top: 60px;">
-        <form class="layui-form" action="/menu/save" method="post" th:id="addMenuForm">
+        <form class="layui-form" action="/menu/save" method="post" id="addMenuForm">
             <div class="layui-form-item">
                 <label class="layui-form-label">菜品名称：</label>
                 <div class="layui-inline">
@@ -30,9 +30,6 @@
                 </div>
             </div>
             <input type="hidden" name="image"  id="productImg">
-
-
-
             <div class="layui-upload-drag" id="test10" style="margin-left: 150px;
     margin-bottom: 50px;">
                 <i class="layui-icon"></i>
@@ -59,11 +56,6 @@
                 </div>
             </div>
 
-
-
-
-
-
             <div class="layui-form-item">
                 <button class="layui-btn" lay-submit type="button" onclick="submitForm()" lay-filter="demo2" style="margin-left: 160px;">提交</button>
             </div>
@@ -72,8 +64,15 @@
 </div>
 <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
 <script>
-
-
+    function submitForm(){
+        var $ = layui.jquery;
+        layer.msg('添加菜品成功', {
+            icon: 1,
+            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+        }, function(){
+            $("#addMenuForm").submit();
+        });
+    }
     layui.use('upload', function(){
         var $ = layui.jquery
             ,upload = layui.upload;
@@ -92,18 +91,6 @@
 
     });
 
-
-
-    function submitForm(){
-
-        layer.msg('添加菜品成功', {
-            icon: 1,
-            time: 2000 //2秒关闭（如果不配置，默认是3秒）
-        }, function(){
-            $("#addMenuForm").submit();
-        });
-
-    }
 </script>
 </body>
 </html>

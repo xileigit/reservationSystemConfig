@@ -19,7 +19,17 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="layui/css/layui.css" media="all">
-        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+        <link rel="stylesheet" th:href="@{/vendors/linericon/style.css}">
+        <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+        <link rel="stylesheet" th:href="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css}">
+        <link rel="stylesheet" th:href="@{/vendors/nice-select/css/nice-select.css}">
+        <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
+        <!-- main css -->
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
         <style type="text/css">
             .accomodation_item .hotel_img img{
                 width: 260px;
@@ -52,7 +62,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" alt="香港粗菜馆（虹桥店）"></a>
+                    <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" th:src="@{/image/Logo.png}" alt="香港粗菜馆（虹桥店）"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -189,7 +199,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="image/room1.jpg" alt="">
+                                <img src="image/room1.jpg" th:src="@{/image/room1.jpg}" alt="">
                                 <a href="#" class="btn theme_btn button_hover">Book Now</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">花雕芙蓉蒸帝王蟹</h4></a>
@@ -199,7 +209,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="image/room2.jpg" alt="">
+                                <img src="image/room2.jpg" th:src="@{/image/room2.jpg}" alt="">
                                 <a href="#" class="btn theme_btn button_hover">Book Now</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">沙田烤乳鸽</h4></a>
@@ -209,7 +219,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="image/room3.jpg" alt="">
+                                <img src="image/room3.jpg" th:src="@{/image/room3.jpg}" alt="">
                                 <a href="#" class="btn theme_btn button_hover">Book Now</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">冰镇猪手</h4></a>
@@ -219,7 +229,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="image/room4.jpg" alt="">
+                                <img src="image/room4.jpg" th:src="@{/image/room4.jpg}" alt="">
                                 <a href="#" class="btn theme_btn button_hover">Book Now</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">鸿运烤乳猪</h4></a>
@@ -244,7 +254,7 @@
                 </div>
                 <div class="testimonial_slider owl-carousel">
                     <div class="media testimonial_item">
-                        <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
+                        <img class="rounded-circle" src="image/testtimonial-1.jpg" th:src="@{/image/testtimonial-1.jpg}" alt="">
                         <div class="media-body">
                             <p>味道一般般吧 没有惊艳的感觉</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
@@ -258,7 +268,7 @@
                         </div>
                     </div>    
                     <div class="media testimonial_item">
-                        <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
+                        <img class="rounded-circle" src="image/testtimonial-1.jpg" th:src="@{/image/testtimonial-1.jpg}" alt="">
                         <div class="media-body">
                             <p>又来打卡了，自制奶豆腐每次必点，诚心推荐。</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
@@ -272,7 +282,7 @@
                         </div>
                     </div>
                     <div class="media testimonial_item">
-                        <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
+                        <img class="rounded-circle" src="image/testtimonial-1.jpg" th:src="@{/image/testtimonial-1.jpg}" alt="">
                         <div class="media-body">
                             <p>在龙柏附近有这样店开出来是喜事，名为粗菜馆实很细很巧，上档次！但不要迎合外地人口味加辣，至少加辣应征求顾客意见灵活运用，保持粤菜港莱清淡又味好。</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
@@ -286,7 +296,7 @@
                         </div>
                     </div>    
                     <div class="media testimonial_item">
-                        <img class="rounded-circle" src="image/testtimonial-1.jpg" alt="">
+                        <img class="rounded-circle" src="image/testtimonial-1.jpg" th:src="@{/image/testtimonial-1.jpg}" alt="">
                         <div class="media-body">
                             <p>此餐厅还可以价格有点小贵！服务还好</p>
                             <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
@@ -389,5 +399,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="js/stellar.js"></script>
         <script src="vendors/lightbox/simpleLightbox.min.js"></script>
         <script src="js/custom.js"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!--<script th:src="@{/js/jquery-3.2.1.min.js}"></script>-->
+        <script th:src="@{/js/popper.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+        <script th:src="@{/js/jquery.ajaxchimp.min.js}"></script>
+        <script th:src="@{/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js}"></script>
+        <script th:src="@{/vendors/nice-select/js/jquery.nice-select.js}"></script>
+        <script th:src="@{/js/mail-script.js}"></script>
+        <script th:src="@{/js/stellar.js}"></script>
+        <script th:src="@{/vendors/lightbox/simpleLightbox.min.js}"></script>
+        <script th:src="@{/js/custom.js}"></script>
     </body>
 </html>

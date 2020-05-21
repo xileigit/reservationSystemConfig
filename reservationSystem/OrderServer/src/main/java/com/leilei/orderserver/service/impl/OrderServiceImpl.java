@@ -2,6 +2,7 @@ package com.leilei.orderserver.service.impl;
 
 import com.leilei.common.Page;
 import com.leilei.entity.MonthSales;
+import com.leilei.entity.OrderVo;
 import com.leilei.entity.Ordert;
 import com.leilei.orderserver.dao.OrdertMapper;
 import com.leilei.orderserver.service.OrderService;
@@ -74,5 +75,10 @@ public class OrderServiceImpl implements OrderService {
     public Integer decdatingCount() {
         ordertMapper.decdatingCount();
         return 0;
+    }
+
+    @Override
+    public List<OrderVo> findOrderVolist(int i) {
+        return ordertMapper.findOrderVolist(i);
     }
 }

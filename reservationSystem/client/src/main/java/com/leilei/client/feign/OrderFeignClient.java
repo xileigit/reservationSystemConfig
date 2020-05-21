@@ -3,6 +3,7 @@ package com.leilei.client.feign;
 import com.leilei.common.Page;
 import com.leilei.common.ResultMap;
 import com.leilei.entity.MonthSales;
+import com.leilei.entity.OrderVo;
 import com.leilei.entity.Ordert;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -29,4 +30,6 @@ public interface OrderFeignClient {
     List<MonthSales> getMonthSales();
     @GetMapping(value = "/order/orderListUi")
     ResultMap<List<Ordert>> getMenuListUi(@RequestParam("page") String page,@RequestParam("limit") String limit);
+    @GetMapping(value = "/order/orderVoListUi")
+    ResultMap<List<OrderVo>> getOrderListUi(@RequestParam("page") String page,@RequestParam("limit") String limit);
 }

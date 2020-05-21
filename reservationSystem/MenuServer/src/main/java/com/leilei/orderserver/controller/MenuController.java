@@ -66,6 +66,13 @@ public class MenuController {
         System.out.println("menuServer  count" );
         return menuService.getdatingCount();
     }
+    @GetMapping("/detail")
+    public Menu getById(Integer id) {
+//        System.out.println("guhfghqh");
+        System.out.println(id + "in8002 detail");
+        return menuService.findById(id);
+    }
+
     @PostMapping("/delete")
     public void deleteById(Integer id) {
 //        System.out.println("guhfghqh");

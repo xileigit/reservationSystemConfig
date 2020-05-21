@@ -4,6 +4,8 @@ import com.leilei.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
 
@@ -36,4 +38,8 @@ public interface UserMapper {
     int getMaleCnt();
 
     int getFemaleCnt();
+
+    List<User> findUserlist(Integer rows);
+
+    int count();
 }

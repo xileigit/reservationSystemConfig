@@ -70,6 +70,10 @@
     order by id DESC
     limit 1,#{rows}
   </select>
+  <select id="findOrderVolist" resultType="OrderVo">
+     select ordert.id ,user.username as uname,menu.name as mname, ordert.create_time,ordert.update_time ,ordert.state  from ORDERt left join user on
+ordert.uid= user.id left join menu on ordert.mid=menu.id;
+  </select>
   <select id="getMonthSales" resultType="com.leilei.entity.MonthSales">
   select   DATE_FORMAT(create_time,'%m') as month,count(id) as sales
  from ordert   group by DATE_FORMAT(create_time,'%m')  order by DATE_FORMAT(create_time,'%m') ;

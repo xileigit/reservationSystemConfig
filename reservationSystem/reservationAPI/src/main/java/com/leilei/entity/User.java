@@ -22,6 +22,6 @@ public class User implements Serializable {
     private String question;
     private String answer;
     private Integer role;
-    private Date createTime;
-    private Date updateTime;
+    private Date create_time;
+    private Date update_time;
 }

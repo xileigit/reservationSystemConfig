@@ -2,10 +2,7 @@ package com.leilei.client.controller;
 import com.leilei.client.feign.OrderFeignClient;
 import com.leilei.common.Page;
 import com.leilei.common.ResultMap;
-import com.leilei.entity.Menu;
-import com.leilei.entity.MonthSales;
-import com.leilei.entity.Ordert;
-import com.leilei.entity.SeatOrder;
+import com.leilei.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +41,15 @@ public class OrderController {
         System.out.println("test getmenulist");
         return orderFeignClient.getMenuListUi(page,limit);
     }
+    @GetMapping(value = "/orderListUi")
+    @ResponseBody
+    public  ResultMap<List<OrderVo>> getOrderListUi(String page, String limit){
+        System.out.println("test Orderlist");
+        return orderFeignClient.getOrderListUi(page,limit);
+    }
+    
+
+
     @Autowired
     OrderFeignClient orderFeignClient;
     @GetMapping("/count")

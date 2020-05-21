@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sort="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<div class="search-box" style="
+    margin-top: 30px;
+    margin-left: 15px;">
+    <form class="layui-form">
+        <div class="layui-input-inline">
+            <input type="text" name="searContent" autocomplete="off"
+                    class="layui-input">
+        </div>
+        <div class="layui-input-inline " style="width: 90px">
+            <button class="layui-btn" id="searchEmailCompany" data-type="reload" type="button">
+                <i class="layui-icon" style="font-size: 20px; "></i> 搜索
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<!--<table class="layui-hide" id="test" lay-filter="test"></table>-->
+<!--<script type="text/html" id="barDemo">-->
+<!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+<!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+
+<table class="layui-table" lay-data="{ height:330, url:'/user/userListUi', page:true, id:'idTest'}" lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
+        <th lay-data="{field:'username', width:100}">用户名</th>
+        <th lay-data="{field:'phone', width:100}">电话</th>
+        <th lay-data="{field:'gender', width:100,edit: 'text'}">性别</th>
+        <th lay-data="{field:'create_time', width:120, sort: true}">注册日期</th>
+        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+    </tr>
+    </thead>
+</table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            var menuId=data.id;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    //alert(menuId);
+                    obj.del();
+                    layer.close(index);
+                    // $.ajax({
+                    //     type: 'post',
+                    //     url: 'http://localhost:8002/menu/delete',
+                    //     data: {
+                    //         id:menuId
+                    //     },
+                    //     success: function(data){
+                    //
+                    //     }
+                    // });
+                });
+            } else if(obj.event === 'edit'){
+                // $.ajax({
+                //     type: 'post',
+                //     url: "/menu/edit",
+                //     data: {
+                //         id:data.id,
+                //         name:data.name,
+                //         image:data.image,
+                //         detail:data.detail,
+                //         price:data.price,
+                //         freq:data.freq,
+                //         average:data.average,
+                //     },
+                //     success: function(data){
+                //         layer.msg('修改菜品成功', {
+                //             icon: 1,
+                //             time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                //         }, function(){
+                //
+                //         });
+                //     }
+                // });
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            ,getCheckLength: function(){ //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+            }
+            ,isAll: function(){ //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选': '未全选')
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+
+
+    // layui.use('table', function() {
+    //     var table = layui.table;
+    //     var total = 0;
+    //     table.render({
+    //         elem: '#test'
+    //         , url: '/menu/layUiList'
+    //         , toolbar: '#toolbarDemo'
+    //         , title: '用户数据表',
+    //         cols: [
+    //             [
+    //             {type: 'checkbox', fixed: 'left'},
+    //             {field:'id', width:300, title: 'ID', sort: true}
+    //             ,{field:'name', width:400, title: '题目'}
+    //
+    //             ]
+    //         ]
+    //
+    //         , page: true
+    //     });
+    // });
+
+</script>
+
+</body>
+</html>

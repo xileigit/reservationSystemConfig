@@ -1,13 +1,19 @@
 package com.leilei.client.controller;
+import com.leilei.client.feign.CommentService;
 import com.leilei.client.feign.MenuFeignClient;
 import com.leilei.common.Page;
 import com.leilei.common.ResultMap;
+import com.leilei.entity.Comment;
+import com.leilei.entity.CommentVo;
 import com.leilei.entity.Menu;
+import com.leilei.entity.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -21,6 +27,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
+    @Resource
+    CommentService commentService;
     @GetMapping(value = "/layUiList")
     @ResponseBody
     public  ResultMap<List<Menu>> backContent(Page page, @RequestParam("limit") int limit){
@@ -37,12 +45,36 @@ public class MenuController {
        return "/menu_manage";
         //return "/menu_edit";
     }
+
+    @RequestMapping("/detail")
+    public String productDetailUI(HttpServletRequest request) {
+        System.out.println("menu detail");
+        String pid=request.getParameter("pid");//
+        //Menu product=  menuFeignClient.getById(Integer.parseInt(pid));
+        //request.getSession().setAttribute("MENU",product);
+        //System.out.println(product);
+        List<Comment> commentList=commentService.getCommentListByMid(Integer.parseInt(pid));
+        request.getSession().setAttribute("commentList",commentList);
+        System.out.println(commentList);
+        return "menu_detail";
+    }
     @GetMapping(value = "/menuList")
     @ResponseBody
     public  List<Menu> getMenuList(String page,String limit){
         System.out.println("test getmenulist");
         return menuFeignClient.getMenuList(page,limit);
     }
+
+    @GetMapping(value = "/commentListUi")
+    @ResponseBody
+    public  ResultMap<List<CommentVo>> getCommentListUi(String page, String limit){
+        System.out.println("commentService list");
+        List<CommentVo> productList=commentService.findCommentlist(Integer.parseInt(limit));
+        int totals=commentService.count();
+        return new ResultMap<List<CommentVo>>("",productList,0,totals);
+    }
+
+
     @GetMapping(value = "/menuListUi")
     @ResponseBody
     public  ResultMap<List<Menu>> getMenuListUi(String page,String limit){
@@ -60,7 +92,6 @@ public class MenuController {
     }
     @GetMapping("/specialMenuList")
     public String getSpecialMenuList(Model model){
-
         List<Menu> list = menuFeignClient.getAllMenuList();
         System.out.println(list);
         model.addAttribute("IndexMenuList",list);
@@ -155,9 +186,7 @@ public class MenuController {
     @PostMapping("/edit")
     @ResponseBody
     public Integer edit(Menu menu){
-
         menuFeignClient.edit(menu);
-
         return 0;
     }
 }

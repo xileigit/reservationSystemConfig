@@ -9,7 +9,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">layui 后台布局</div>
+        <div class="layui-logo">香港粗菜馆后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -61,8 +61,14 @@
 
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="/comment/editUI" target="iframe-content">评论管理</a></li>
-                <li class="layui-nav-item"><a href="/user/redirect/user_gender" target="iframe-content">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/menu/redirect/comment_edit" target="iframe-content">评论管理</a></li>
+                <li class="layui-nav-item" >
+                    <a class="" href="javascript:;">用户管理</a>
+                    <dl class="layui-nav-child">
+                    <dd><a href="/user/redirect/user_gender" target="iframe-content">用户性别分析</a></dd>
+                    <dd><a href="/user/redirect/user_edit"  target="iframe-content">编辑删除</a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>
@@ -76,8 +82,7 @@
     </div>
 
     <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+
     </div>
 </div>
 <script th:src="@{/layui/layui.js}"></script>

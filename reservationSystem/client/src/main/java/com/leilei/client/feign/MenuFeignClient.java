@@ -24,7 +24,8 @@ public interface MenuFeignClient {
     ResultMap<List<Menu>> backContent(Page page, @RequestParam("limit") int limit);
     @GetMapping(value = "/menu/menuList")
     List<Menu> getMenuList(@RequestParam("page") String page,@RequestParam("limit") String limit);
-
+    @GetMapping("/menu/detail")
+    Menu getById(Integer id);
     @GetMapping(value = "/menu/menuListUi")
     ResultMap<List<Menu>> getMenuListUi(@RequestParam("page") String page,@RequestParam("limit") String limit);
     @GetMapping(value = "/menu/getIndexMenu")

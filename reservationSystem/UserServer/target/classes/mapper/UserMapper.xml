@@ -23,6 +23,18 @@
     select count(1) from user
     where username = #{username}
   </select>
+    <select id="count" resultType="Integer">
+    select count(id) from user
+  </select>
+
+    <select id="findUserlist" parameterType="Integer" resultType="User" >
+    select
+      *
+    from user
+
+    order by id DESC
+    limit 0,#{rows}
+  </select>
     <select id="checkEmail" resultType="int" parameterType="string" >
     select count(1) from user
     where email = #{email}

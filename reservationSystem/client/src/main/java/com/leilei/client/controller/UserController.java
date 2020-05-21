@@ -2,6 +2,8 @@ package com.leilei.client.controller;
 
 import com.leilei.client.feign.UserFeignClient;
 import com.leilei.common.ResponseResult;
+import com.leilei.common.ResultMap;
+import com.leilei.entity.Menu;
 import com.leilei.entity.User;
 import com.leilei.entity.UserGender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -18,6 +21,13 @@ public class UserController {
     @RequestMapping("/add")
     public String add(){
         return "register";
+    }
+
+    @GetMapping(value = "/userListUi")
+    @ResponseBody
+    public  ResultMap<List<User>> getUserListUi(String page, String limit){
+        System.out.println("test getmenulist");
+        return userFeignClient.getUserListUi(page,limit);
     }
     @RequestMapping("/genderU")
     public String gender(){

@@ -1,6 +1,7 @@
 package com.leilei.client.feign;
 
 import com.leilei.common.ResponseResult;
+import com.leilei.common.ResultMap;
 import com.leilei.entity.Menu;
 import com.leilei.entity.User;
 import com.leilei.entity.UserGender;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Component
 @FeignClient(name = "USERSERVER")
@@ -32,5 +34,6 @@ public interface UserFeignClient {
     String setSession(@PathVariable("key") String key , @PathVariable("value") String value);
     @RequestMapping("/user/getSession/{key}")
     String getSession(@PathVariable(name = "key") String key );
-
+    @GetMapping(value = "/user/userListUi")
+    ResultMap<List<User>> getUserListUi(@RequestParam("page") String page,@RequestParam("limit") String limit);
 }

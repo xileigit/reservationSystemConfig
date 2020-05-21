@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -68,6 +69,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getFemaleCnt() {
         return userMapper.getFemaleCnt();
+    }
+
+    @Override
+    public List<User> findUserlist(Integer rows) {
+        return userMapper.findUserlist(rows);
+    }
+
+    @Override
+    public int count() {
+        return userMapper.count();
     }
 
 

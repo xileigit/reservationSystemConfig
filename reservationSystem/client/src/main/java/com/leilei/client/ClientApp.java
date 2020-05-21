@@ -1,5 +1,6 @@
 package com.leilei.client;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @SpringBootApplication
 @EnableFeignClients
 @EnableRedisHttpSession
+@MapperScan("com.leilei.client.dao")
 public class ClientApp  {
     public static void main(String[] args) {
         SpringApplication.run(ClientApp.class, args);

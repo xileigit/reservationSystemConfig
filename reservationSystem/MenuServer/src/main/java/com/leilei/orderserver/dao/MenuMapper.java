@@ -11,9 +11,7 @@ public interface MenuMapper {
     Menu selectByPrimaryKey(Integer id);
     List<Menu> selectAll();
     int updateByPrimaryKey(Menu record);
-
     int count();
-
     List<Menu> selectPageList(Page page);
 
     Integer selectPageCount(Page page);

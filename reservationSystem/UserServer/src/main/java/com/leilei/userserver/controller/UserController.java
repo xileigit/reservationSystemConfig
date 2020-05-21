@@ -1,6 +1,8 @@
 package com.leilei.userserver.controller;
 import com.leilei.common.ResponseCode;
 import com.leilei.common.ResponseResult;
+import com.leilei.common.ResultMap;
+import com.leilei.entity.Menu;
 import com.leilei.entity.User;
 import com.leilei.entity.UserGender;
 import com.leilei.userserver.service.UserService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -70,6 +73,16 @@ public class UserController {
         System.out.println(request.getSession().getId());
         System.out.println(request.getSession().getAttribute(key));
         return request.getSession().getId();
+    }
+
+    @GetMapping(value = "/userListUi")
+    public ResultMap<List<User>> getUserListui(String page, String limit){
+        List<User> productList=userService.findUserlist(Integer.parseInt(limit));
+        for (User product: productList) {
+            System.out.println(product);
+        }
+        int totals=userService.count();
+        return new ResultMap<List<User>>("",productList,0,totals);
     }
 
     /**

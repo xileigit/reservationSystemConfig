@@ -2,6 +2,7 @@ package com.leilei.orderserver.dao;
 
 import com.leilei.common.Page;
 import com.leilei.entity.MonthSales;
+import com.leilei.entity.OrderVo;
 import com.leilei.entity.Ordert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -31,4 +32,6 @@ public interface OrdertMapper {
     void decbaofangCount();
 
     void decdatingCount();
+
+    List<OrderVo> findOrderVolist(int i);
 }

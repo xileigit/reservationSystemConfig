@@ -3,6 +3,7 @@ package com.leilei.orderserver.controller;
 import com.leilei.common.Page;
 import com.leilei.common.ResultMap;
 import com.leilei.entity.MonthSales;
+import com.leilei.entity.OrderVo;
 import com.leilei.entity.Ordert;
 import com.leilei.orderserver.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,18 @@ public class OrderController {
     public  List<Ordert> getOrderList(String page,String limit){
         return orderService.findAll();
     }
+    @GetMapping(value = "/orderVoListUi")
+    ResultMap<List<OrderVo>> getOrderVoListUi(@RequestParam("page") String page, @RequestParam("limit") String limit){
+        List<OrderVo> productList=orderService.findOrderVolist(Integer.parseInt(limit));
+        int totals=orderService.count();
+        // page.setTotalRecord(totals);
+//        for (Product p:productList) {
+//            System.out.println(p);
+//        }
+        return new ResultMap<List<OrderVo>>("",productList,0,totals);
+    }
+
+
     @GetMapping(value = "/orderListUi")
     public  ResultMap<List<Ordert>> getOrderListui(String page,String limit){
         System.out.println("menuList server");
@@ -49,6 +62,7 @@ public class OrderController {
 //        }
         return new ResultMap<List<Ordert>>("",productList,0,totals);
     }
+
 
 
     @GetMapping("/count")
